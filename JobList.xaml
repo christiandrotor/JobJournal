@@ -1,0 +1,30 @@
+﻿<Page x:Class="JobJournal.JobList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:JobJournal"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="400"
+      Title="Job Result">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Border Background="Red">
+            <Label Width="50" HorizontalAlignment="Center" FontSize="20" Foreground="White">Jobs</Label>
+        </Border>
+        <DataGrid Grid.Row="1" x:Name="GridJobList" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Company Name" Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Application Date" Width="*" Binding="{Binding AppDate}"/>
+                <DataGridTextColumn Header="Application Source" Width="*" Binding="{Binding AppSource}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

@@ -12,17 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JobJournal;
 
 namespace JobJournal
 {
     /// <summary>
     /// Interaction logic for JobResult.xaml
     /// </summary>
-    public partial class JobResult : Page
+    public partial class JobList : Page
     {
-        public JobResult()
+        private Jobs j = new Jobs();
+        public JobList()
         {
             InitializeComponent();
+            GridJobList.DataContext = j.GetList();
         }
     }
 }

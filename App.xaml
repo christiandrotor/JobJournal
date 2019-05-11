@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:JobJournal"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--Button style-->
+        <Style x:Key="button">
+            <Setter Property="Button.Background" Value="MistyRose"/>
+            <Setter Property="Button.Width" Value="50"/>
+        </Style>
     </Application.Resources>
 </Application>

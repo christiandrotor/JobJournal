@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JobJournal;
 
 namespace JobJournal
 {
@@ -20,22 +21,29 @@ namespace JobJournal
     /// </summary>
     public partial class Home : Page
     {
+        Job[] jobs = { };
         public Home()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void View_All_Click(object sender, RoutedEventArgs e)
+        {
+            JobList jobs = new JobList();
+            this.NavigationService.Navigate(jobs);
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
         }
