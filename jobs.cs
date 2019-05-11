@@ -32,9 +32,9 @@ namespace JobJournal
             jobs.Remove(job);
         }
 
-        public Dictionary<string, Job>.ValueCollection GetList()
+        public List<Job> GetList()
         {
-            return jobs.Values;
+            return jobs.Values.ToList();
         }
     }
     public class Job
