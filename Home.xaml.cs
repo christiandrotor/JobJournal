@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlServerCe;
 using JobJournal;
 
 namespace JobJournal
@@ -21,14 +22,17 @@ namespace JobJournal
     /// </summary>
     public partial class Home : Page
     {
-        Job[] jobs = { };
+        private Jobs jobs;
         public Home()
         {
             InitializeComponent();
+            jobs = new Jobs();
+            this.DataContext = this;
         }
 
         private void View_All_Click(object sender, RoutedEventArgs e)
         {
+            JobFactory.getDatabase();
             JobList jobs = new JobList();
             this.NavigationService.Navigate(jobs);
         }
@@ -38,6 +42,7 @@ namespace JobJournal
 
         }
 
+
         private void Add_Click(object sender, RoutedEventArgs e)
         {
 
@@ -46,6 +51,22 @@ namespace JobJournal
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(searchBox.Text.Equals("search"))
+            {
+                searchBox.Text = "";
+            }
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(searchBox.Text.Equals(""))
+            {
+                searchBox.Text = "search";
+            }
         }
     }
 }
