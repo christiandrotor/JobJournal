@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,11 @@ namespace JobJournal
     /// </summary>
     public partial class JobList : Page
     {
-        private Jobs j = new Jobs();
+        private JobJournalContext db = new JobJournalContext();
         public JobList()
         {
             InitializeComponent();
-            GridJobList.DataContext = j.GetList();
+            GridJobList.DataContext = db.Jobs.ToList().Where(x => !x.CompanyName.Equals(""));
         }
     }
 }

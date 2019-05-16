@@ -21,9 +21,9 @@
         </Border>
         <DataGrid Grid.Row="1" x:Name="GridJobList" ItemsSource="{Binding}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Company Name" Width="*" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Application Date" Width="*" Binding="{Binding AppDate}"/>
-                <DataGridTextColumn Header="Application Source" Width="*" Binding="{Binding AppSource}"/>
+                <DataGridTextColumn Header="Company Name" Width="*" Binding="{Binding CompanyName}"/>
+                <DataGridTextColumn Header="Application Date" Width="*" Binding="{Binding AppliedDate}"/>
+                <DataGridTextColumn Header="Application Source" Width="*" Binding="{Binding ApplicationSource}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
