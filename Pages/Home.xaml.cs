@@ -53,14 +53,15 @@ namespace JobJournal
                             SELECT *
                             FROM Jobs
                             WHERE CompanyName=@CompanyName";
-            int exist = db.Jobs.FromSql(query, new SqlCeParameter("@CompanyName", searchBox.Text)).Count();
-            if (exist == 0)
+            List<Job> jobs = db.Jobs.FromSql(query, new SqlCeParameter("@CompanyName", searchBox.Text)).ToList();
+            Job job = jobs.FirstOrDefault();
+            if (jobs.Count() == 0)
             {
                 Message.Text = "You have not applied to " + searchBox.Text;
             }
             else
             {
-                Message.Text = "You have already applied to " + searchBox.Text;
+                Message.Text = "You have already applied to " + job.CompanyName;
             }
         }
 
@@ -69,7 +70,7 @@ namespace JobJournal
         {
             if (AddCompanyName.Text == "" || AddAppliedDate.Text == "" || AddApplicationSource.Text == "")
                 return;
-            if (db.Jobs.Where(x => x.CompanyName.Equals(AddCompanyName.Text)).Count() == 0)
+            if (db.Jobs.Where(x => x.CompanyName.ToLower().Equals(AddCompanyName.Text.ToLower())).Count() == 0)
             {
                 db.Jobs.Add(new Job { CompanyName = AddCompanyName.Text, AppliedDate = AddAppliedDate.SelectedDate.Value, ApplicationSource = AddApplicationSource.Text });
                 db.SaveChanges();
@@ -78,19 +79,19 @@ namespace JobJournal
 
                 MessageBox.Show("The company " + AddCompanyName.Text + " was successfully added to the database");
                 AddCompanyName.Text = "";
-
             }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            IQueryable<Job> find = db.Jobs.Where(x => x.CompanyName.Equals(RemoveCompanyName.Text));
+            IQueryable<Job> find = db.Jobs.Where(x => x.CompanyName.ToLower().Equals(RemoveCompanyName.Text.ToLower()));
             int resultAmt = find.Count();
             if (resultAmt == 1)
             {
-                db.Jobs.Remove(find.First());
+                Job job = find.First();
+                db.Jobs.Remove(job);
                 db.SaveChanges();
-                MessageBox.Show("The company " + RemoveCompanyName.Text + " was successfully removed from the database");
+                MessageBox.Show("The company " + job.CompanyName + " was successfully removed from the database");
             }
             else if (resultAmt > 1)
             {
